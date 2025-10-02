@@ -1,11 +1,60 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { CheckCircle, Camera, Info } from "lucide-react";
+import {
+  CheckCircle,
+  Camera,
+  Info,
+  Facebook,
+  Instagram,
+  Youtube,
+  Twitter,
+  ActivityIcon,
+  Music,
+} from "lucide-react";
 import { mockDestinations } from "../data/mockData";
 
 const OverviewPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const destination = mockDestinations.find((d) => d.id === Number(id));
+
+  const socialLinks = [
+    {
+      name: "Facebook",
+      icon: Facebook,
+      color: "bg-blue-600",
+      url: "https://facebook.com",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      color: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600",
+      url: "https://instagram.com",
+    },
+    {
+      name: "TikTok",
+      icon: Music,
+      color: "bg-black",
+      url: "https://tiktok.com",
+    },
+    {
+      name: "X",
+      icon: Twitter,
+      color: "bg-black",
+      url: "https://x.com",
+    },
+    {
+      name: "Reddit",
+      icon: ActivityIcon,
+      color: "bg-orange-500",
+      url: "https://reddit.com",
+    },
+    {
+      name: "YouTube",
+      icon: Youtube,
+      color: "bg-red-600",
+      url: "https://youtube.com",
+    },
+  ];
 
   if (!destination) {
     return <div className="p-8">Destination not found</div>;
@@ -34,46 +83,68 @@ const OverviewPage = () => {
         </div>
       </div>
 
-      <div className="mb-6 h-48 rounded-lg bg-gray-300"></div>
+      <div className="mb-6 h-64 rounded-lg bg-gray-300">
+        <img
+          src={`/images/overview/${destination.name.toLowerCase()}.webp`}
+          alt=""
+          className="h-full w-full object-cover"
+        />
+      </div>
 
       <div className="mb-8">
         <p className="mb-4 leading-relaxed text-gray-800">
-          Baščaršija is located on the north bank of the river Miljacka, in the
-          municipality of Stari Grad. On Baščaršija there are several important
-          historic buildings, such as the Gazi Husrev-beg Mosque and sahat-kula.
-          Today Baščaršija is the major tourist attraction of Sarajevo.
+          {destination.description}
         </p>
-        <p className="leading-relaxed text-gray-800">
+        {/* <p className="leading-relaxed text-gray-800">
           The word Baščaršija derives from the Turkish language. The word "baš"
           which is "baş" in Turkish literally means "head", but in some contexts
           also means "primary", "main", "capital". "Čaršija" which is "çarşı" in
           Turkish means "bazaar" or "market".
-        </p>
+        </p> */}
       </div>
 
-      <h2 className="mb-4 text-2xl font-bold">
-        Photos / Videos from Social Media:
-      </h2>
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-2xl font-bold">
+          Photos / Videos from Social Media:
+        </h2>
+        <a href="https://tiktok.com/" target="_blank">
+          View more
+        </a>
+      </div>
       <div className="mb-8 grid grid-cols-6 gap-3">
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className="aspect-square rounded-lg bg-gray-400"></div>
+        {[1, 2, 3, 4, 5, 6].map((n) => (
+          <div
+            key={n}
+            className="aspect-[9/16] overflow-hidden rounded-lg bg-gray-400"
+          >
+            <video
+              className="h-full w-full object-cover"
+              controls
+              muted
+              playsInline
+            >
+              <source
+                src={`/videos/overview/social-media-overview-${n}.mp4`}
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         ))}
       </div>
 
       <h2 className="mb-4 text-2xl font-bold">Discover on Social Media</h2>
       <div className="mb-8 grid grid-cols-6 gap-3">
-        <div className="flex aspect-square items-center justify-center rounded-lg bg-gray-400">
-          <svg className="h-12 w-12" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-          </svg>
-        </div>
-        <div className="flex aspect-square items-center justify-center rounded-lg bg-gray-400">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl border-4 border-black">
-            <div className="h-6 w-6 rounded-full border-4 border-black"></div>
-          </div>
-        </div>
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="aspect-square rounded-lg bg-gray-400"></div>
+        {socialLinks.map(({ name, icon: Icon, color, url }) => (
+          <a
+            key={name}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex aspect-square items-center justify-center rounded-lg text-white transition-transform duration-200 hover:scale-105 ${color}`}
+          >
+            <Icon className="h-10 w-10" />
+          </a>
         ))}
       </div>
 

@@ -83,7 +83,7 @@ const OverviewPage = () => {
           </a>
           <button
             onClick={() => navigate(`/destination/${id}/ar`)}
-            className="bg-primary-900 flex items-center gap-2 rounded-lg px-6 py-3 transition-colors hover:bg-gray-400"
+            className="bg-primary-900 flex items-center gap-2 rounded-lg px-6 py-3 transition-colors hover:bg-black"
           >
             <span className="font-semibold text-white">Augmented Reality</span>
             <Camera className="h-5 w-5 text-white" />
@@ -91,11 +91,11 @@ const OverviewPage = () => {
         </div>
       </div>
 
-      <div className="mb-6 h-64 rounded-lg bg-gray-300">
+      <div className="mb-6 h-64 overflow-hidden rounded-lg bg-gray-300">
         <img
           src={`/images/overview/${destination.name.toLowerCase()}.webp`}
           alt=""
-          className="h-full w-full object-cover"
+          className="h-full w-full transform object-cover transition-transform duration-500 hover:scale-110"
         />
       </div>
 

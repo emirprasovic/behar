@@ -1,5 +1,3 @@
-import { MapPin } from "lucide-react";
-
 const LandingPage = () => {
   return (
     <div className="relative flex h-full flex-col items-center justify-center p-8 text-gray-500">

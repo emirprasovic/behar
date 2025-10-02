@@ -11,11 +11,17 @@ import {
   Music,
 } from "lucide-react";
 import { mockDestinations } from "../data/mockData";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
+import { useEffect } from "react";
 
 const OverviewPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const destination = mockDestinations.find((d) => d.id === Number(id));
+
+  const mapPosition = destination?.coordinates
+    ? destination.coordinates
+    : [43.8193, 19.2706];
 
   const socialLinks = [
     {
@@ -135,6 +141,24 @@ const OverviewPage = () => {
         ))}
       </div>
 
+      <h2 className="mb-4 text-2xl font-bold">Location</h2>
+      <div className="mb-8 h-48 overflow-hidden rounded-lg bg-gray-100">
+        <div className="h-full w-full">
+          <MapContainer
+            center={mapPosition}
+            zoom={14}
+            scrollWheelZoom={true}
+            style={{ height: "100%", width: "100%" }}
+            className="z-0"
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+            <Marker position={mapPosition}></Marker>
+            <MapController center={mapPosition} />
+          </MapContainer>
+        </div>
+      </div>
+
       <h2 className="mb-4 text-2xl font-bold">Discover More</h2>
       <div className="mb-8 grid grid-cols-6 gap-3">
         {socialLinks.map(({ name, icon: Icon, color, url }) => (
@@ -161,5 +185,17 @@ const OverviewPage = () => {
     </div>
   );
 };
+
+function MapController({ center }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (center && center.length === 2) {
+      map.setView(center, map.getZoom());
+    }
+  }, [center, map]);
+
+  return null;
+}
 
 export default OverviewPage;

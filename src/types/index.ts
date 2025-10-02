@@ -4,4 +4,5 @@ export interface Destination {
   likes: number;
   distance: string;
   verified: boolean;
+  coordinates: { lat: number; lng: number };
 }

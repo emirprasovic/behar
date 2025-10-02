@@ -36,7 +36,7 @@ const TagsDropdown = ({ selectedTags, setSelectedTags }: TagsDropdownProps) => {
     <div className="mb-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-left"
+        className="border-primary-300 flex w-full items-center justify-between rounded-lg border bg-white px-4 py-2 text-left"
       >
         <span className="text-gray-700">Search tags</span>
         <ChevronDown
@@ -45,7 +45,7 @@ const TagsDropdown = ({ selectedTags, setSelectedTags }: TagsDropdownProps) => {
       </button>
 
       {isOpen && (
-        <div className="mt-2 space-y-2 rounded-lg border border-gray-300 bg-white p-3">
+        <div className="bg-primary-50 mt-2 space-y-2 rounded-lg border border-gray-300 p-3">
           {AVAILABLE_TAGS.map((tag) => (
             <label key={tag} className="flex cursor-pointer items-center gap-2">
               <input

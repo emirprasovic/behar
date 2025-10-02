@@ -49,7 +49,7 @@ const DestinationList = ({
       {hasMore && (
         <button
           onClick={handleLoadMore}
-          className="mt-4 w-full rounded-lg bg-gray-400 py-2 text-white transition-colors hover:bg-gray-500"
+          className="bg-primary-200 hover:bg-primary-300 mt-4 w-full rounded-lg py-2 text-black transition-colors"
         >
           Load More ({filteredDestinations.length - visibleCount} remaining)
         </button>

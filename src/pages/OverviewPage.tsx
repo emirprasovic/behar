@@ -63,7 +63,9 @@ const OverviewPage = () => {
   return (
     <div className="p-8">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-5xl font-bold">{destination.name}</h1>
+        <h1 className="text-primary-900 text-5xl font-bold">
+          {destination.name}
+        </h1>
         <div className="flex items-center gap-2">
           <a
             href="https://discoverbih.com/destinations/sarajevo-surroundings/"
@@ -75,10 +77,10 @@ const OverviewPage = () => {
           </a>
           <button
             onClick={() => navigate(`/destination/${id}/ar`)}
-            className="flex items-center gap-2 rounded-lg bg-gray-300 px-6 py-3 transition-colors hover:bg-gray-400"
+            className="bg-primary-900 flex items-center gap-2 rounded-lg px-6 py-3 transition-colors hover:bg-gray-400"
           >
-            <span className="font-semibold">Augmented Reality</span>
-            <Camera className="h-5 w-5" />
+            <span className="font-semibold text-white">Augmented Reality</span>
+            <Camera className="h-5 w-5 text-white" />
           </button>
         </div>
       </div>
@@ -133,7 +135,7 @@ const OverviewPage = () => {
         ))}
       </div>
 
-      <h2 className="mb-4 text-2xl font-bold">Discover on Social Media</h2>
+      <h2 className="mb-4 text-2xl font-bold">Discover More</h2>
       <div className="mb-8 grid grid-cols-6 gap-3">
         {socialLinks.map(({ name, icon: Icon, color, url }) => (
           <a

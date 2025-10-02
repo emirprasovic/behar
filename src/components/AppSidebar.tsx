@@ -9,14 +9,14 @@ const AppSidebar = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   return (
-    <aside className="h-screen overflow-y-auto border-r border-gray-300 bg-gray-100">
+    <aside className="bg-primary-900 h-screen overflow-y-auto border-r border-gray-300">
       <div className="p-6">
         <div className="mb-6 flex items-center justify-center gap-3">
           {/* <MapPin className="h-8 w-8" />
           <h1 className="text-2xl font-bold">
             BEH<span className="font-extrabold">AR</span>
           </h1> */}
-          <img src="/logo.png" alt="BEHAR LOGO" className="h-24 w-24" />
+          <img src="/logo-dark.png" alt="BEHAR LOGO" className="h-24 w-24" />
         </div>
 
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />

@@ -15,10 +15,16 @@ const DestinationCard = ({ destination, onClick }: DestinationCardProps) => {
     <button
       onClick={onClick}
       className={`flex w-full items-center gap-3 rounded-lg p-3 transition-colors ${
-        isSelected ? "bg-gray-300" : "bg-white hover:bg-gray-200"
+        isSelected ? "bg-primary-100" : "hover:bg-primary-100 bg-primary-50"
       }`}
     >
-      <div className="h-12 w-12 flex-shrink-0 rounded bg-gray-800"></div>
+      <div className="h-12 w-12 flex-shrink-0 rounded bg-gray-800">
+        <img
+          src={`/images/overview/${destination.name.toLowerCase()}.webp`}
+          alt=""
+          className="h-full w-full rounded object-cover"
+        />
+      </div>
       <div className="flex-grow text-left">
         <div className="flex items-center gap-2">
           <span className="font-semibold">{destination.name}</span>
